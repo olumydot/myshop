@@ -1,0 +1,502 @@
+{% extends "shop/base1.html" %}
+{% load static %}
+
+{% block title %}
+    Home-Iluzbrand
+{% endblock %}
+
+{% block content %}
+
+  <!-- BANNER STRAT -->
+  <section>
+    <div class="banner">
+      <div class="main-banner">
+        <div class="banner-1">
+          <img src="{% static "images/pexels-photo-132340.jpeg" %}" alt={% static "images/no_image.png" %}">
+          <div class="banner-detail">
+            <div class="row">
+              <div class="col-md-4 col-sm-5 col-xs-4"></div>
+              <div class="col-md-8 col-sm-7 col-xs-8">
+                <div class="banner-detail-inner">
+                    <h1 class="banner-title">{{ carousel1.carousel_header }}</h1>
+                    <h1 class="banner-subtitle">{{ carousel1.carousel_body }}</h1>
+                    <a href="{% url "shop:product_list" %}" class="btn btn-color">Shop Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="banner-2">
+          <img src="{% static "images/pexels-photo-285173.jpeg" %}" alt={% static "images/no_image.png" %}">
+          <div class="banner-detail">
+            <div class="row">
+              <div class="col-md-2 col-sm-2 col-xs-2"></div>
+              <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="banner-detail-inner">
+                    <h1 class="banner-title">{{ carousel2.carousel_header | truncatewords:"4"}}</h1>
+                    <h1 class="banner-subtitle">{{ carousel2.carousel_body }}</h1>
+                    <a href="{% url "shop:product_list" %}" class="btn btn-color">Shop Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="banner-3">
+          <img src="{% static "images/pexels-photo-577514 (1).jpeg" %}" alt={% static "images/no_image.png" %}">
+          <div class="banner-detail align-center">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="banner-detail-inner">
+                    <h1 class="banner-title">{{ carousel3.carousel_header }}</h1>
+                    <h1 class="banner-subtitle">{{ carousel3.carousel_body }}</h1>
+                    <a href="{% url "shop:product_list" %}" class="btn btn-color">Shop Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- BANNER END -->
+
+  <!-- CONTAIN START -->
+
+  <!-- Sub-banner Block Start -->
+  <section class="container">
+    <div class="sub-banner-block center-xs pt-65">
+      <div class="row m-0">
+        <div class="col-sm-6 p-0">
+          <div class="sub-banner sub-banner1">
+            <a> <img src="{% static "images/phone charger.jpeg" %}" alt={% static "images/no_image.png" %}">
+              <div class="sub-banner-detail">
+                <div class="sub-banner-subtitle">Discover Lights For The Future</div>
+                <div class="sub-banner-title">Portable Chargers Too</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-6 p-0">
+          <div class="row m-0">
+            <div class="col-xs-6 p-0">
+              <div class="sub-banner sub-banner2">
+                <a> <img src="{% static "images/phone300.jpeg" %}" alt={% static "images/no_image.png" %}">
+                  <div class="sub-banner-detail">
+                    <div class="sub-banner-title">Charging <span class="sub-banner-subtitle">Phones</span></div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-6 p-0">
+              <div class="sub-banner sub-banner3">
+                <a> <img src="{% static "images/laptop charging.jpeg" %}" alt={% static "images/no_image.png" %}">
+                  <div class="sub-banner-detail">
+                    <div class="sub-banner-title">Every <span class="sub-banner-subtitle">Device</span></div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row m-0">
+            <div class="col-xs-6 p-0">
+              <div class="sub-banner sub-banner4">
+                <a href="{% url "shop:product_list" %}"> <img src="{% static "images/house.jpeg" %}" alt={% static "images/no_image.png" %}">
+                  <div class="sub-banner-detail">
+                    <div class="sub-banner-subtitle">Your house is</div>
+                    <div class="sub-banner-title">Heaven Style With us</div>
+                    <div class="sub-banner-btn"><span class="btn sub-btn">Shop Now</span></div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-6 p-0">
+              <div class="sub-banner sub-banner5">
+                <a> <img src="{% static "images/perfect pair.jpeg" %}" alt={% static "images/no_image.png" %}">
+                  <div class="sub-banner-detail">
+                    <div class="sub-banner-title text-white">Perfect <span class="sub-banner-subtitle">Pair</span></div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Sub-banner Block End -->
+
+<section class="container">
+    <div class="ptb-85">
+      <div class="product-slider owl-slider">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="heading-part align-center mb-40">
+              <h2 class="main_title">Featured Products</h2>
+              <div id="tabs" class="category-bar mb-20">
+                <ul class="tab-stap">
+                  <li><a class="tab-step1 selected" title="step1">Best Seller</a></li>
+                  <li><a class="tab-step2" title="step2">New Products</a></li>
+                  <li><a class="tab-step3" title="step3">Special Products</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div id="items">
+            <div class="tab_content pro_cat">
+              <ul>
+                <li>
+                  <div id="data-step1" class="items-step1 selected product-slider-main position-r" data-temp="tabdata">
+                      {% for product in products %}
+                      {% if product.bestseller %}
+                      <ul>
+                          <li>
+                             <div class="col-md-3 col-sm-4 col-xs-6 plr-20 mb-40">
+                              <div class="product-item">
+                                <div class="product-image">
+                                    {% if product.sale %}
+                                  <div class="sale-label"><span>Sale</span></div>
+                                    {% endif %}
+                                  <a href="{{ product.get_absolute_url }}">
+                                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "images/no_image.png" %}{% endif %}">
+                                  </a>
+                                  <div class="product-detail-inner">
+                                    <div class="detail-inner-left align-center">
+                                      <ul>
+                                        <li class="pro-cart-icon">
+                                          <form>
+                                            <button title="Add to Cart"><span></span></button>
+                                          </form>
+                                        </li>
+                                        <li class="pro-wishlist-icon"><a href="#"></a></li>
+                                        <li class="pro-compare-icon"><a href="#"></a></li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="product-item-details">
+                                    <div class="product-item-name">
+                                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="price">${{ product.price }}</span>
+                                        <del class="price old-price">${{ product.old_price }}</del>
+                                    </div>
+                                    <div class="rating-summary-block">
+                                        <div title="53%" class="rating-result">
+                                        <span style="width:{{product.rating}}%"></span>
+                                        </div>
+                                        <span class="label-review"><span>( 2 review )</span></span>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                      </ul>
+                      {% endif %}
+                      {% endfor %}
+                  </div>
+                </li>
+                <li>
+                  <div id="data-step2" class="items-step2 product-slider-main position-r" data-temp="tabdata">
+                      {% for product in products %}
+                      {% if product.new_product %}
+                      <ul>
+                          <li>
+                             <div class="col-md-3 col-sm-4 col-xs-6 plr-20 mb-40">
+                              <div class="product-item">
+                                <div class="product-image">
+                                    {% if product.sale %}
+                                  <div class="sale-label"><span>Sale</span></div>
+                                    {% endif %}
+                                  <a href="{{ product.get_absolute_url }}">
+                                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "images/no_image.png" %}{% endif %}">
+                                  </a>
+                                  <div class="product-detail-inner">
+                                    <div class="detail-inner-left align-center">
+                                      <ul>
+                                        <li class="pro-cart-icon">
+                                          <form>
+                                            <button title="Add to Cart"><span></span></button>
+                                          </form>
+                                        </li>
+                                        <li class="pro-wishlist-icon"><a href="#"></a></li>
+                                        <li class="pro-compare-icon"><a href="#"></a></li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="product-item-details">
+                                    <div class="product-item-name">
+                                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="price">${{ product.price }}</span>
+                                        <del class="price old-price">${{ product.old_price }}</del>
+                                    </div>
+                                    <div class="rating-summary-block">
+                                        <div title="53%" class="rating-result">
+                                        <span style="width:{{product.rating}}%"></span>
+                                        </div>
+                                        <span class="label-review"><span>( 2 review )</span></span>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                      </ul>
+                      {% endif %}
+                      {% endfor %}
+                  </div>
+                </li>
+                <li>
+                  <div id="data-step1" class="items-step3 product-slider-main position-r" data-temp="tabdata">
+                      {% for product in products %}
+                      {% if product.special %}
+                      <ul>
+                          <li>
+                             <div class="col-md-3 col-sm-4 col-xs-6 plr-20 mb-40">
+                              <div class="product-item">
+                                <div class="product-image">
+                                    {% if product.sale %}
+                                  <div class="sale-label"><span>Sale</span></div>
+                                    {% endif %}
+                                  <a href="{{ product.get_absolute_url }}">
+                                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "images/no_image.png" %}{% endif %}">
+                                  </a>
+                                  <div class="product-detail-inner">
+                                    <div class="detail-inner-left align-center">
+                                      <ul>
+                                        <li class="pro-cart-icon">
+                                          <form>
+                                            <button title="Add to Cart"><span></span></button>
+                                          </form>
+                                        </li>
+                                        <li class="pro-wishlist-icon"><a href="#"></a></li>
+                                        <li class="pro-compare-icon"><a href="#"></a></li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="product-item-details">
+                                    <div class="product-item-name">
+                                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="price">${{ product.price }}</span>
+                                        <del class="price old-price">${{ product.old_price }}</del>
+                                    </div>
+                                    <div class="rating-summary-block">
+                                        <div title="53%" class="rating-result">
+                                        <span style="width:{{product.rating}}%"></span>
+                                        </div>
+                                        <span class="label-review"><span>( 2 review )</span></span>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                      </ul>
+                      {% endif %}
+                      {% endfor %}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- perellex-banner Start -->
+  <section>
+    <div class="perellex-banner">
+      <div class="container">
+        <div class="ptb-250">
+          <div class="perellex-bg-color">
+            <div class="row">
+              <div class="col-sm-1 col-xs-0"></div>
+              <div class="col-sm-11 col-xs-12">
+                <div class="row">
+                  <div class="col-sm-6 hidden-xs">
+                    <div class="video">
+                      <a href="https://vimeo.com/36252972" class="popup-youtube">
+                        <img src="{% static "images/video.jpeg" %}" alt={% static "images/no_image.png" %}">
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xs-12 position-s">
+                    <div class="perellex-delail">
+                      <div class="perellex-title">we offer  Accessories at discount price</div>
+                      <div class="perellex-subtitle mtb-20s">Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since only five centuries</div>
+                      <a class="btn sub-btn" href="{% url "shop:product_list" %}" >Shop now</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- perellex-banner Start -->
+
+  <section class="sub-category-block">
+    <div class="row m-0">
+      <div class="sub-category-top">
+        <div class="col-md-3 col-sm-6 col-xs-6 align-center p-0">
+          <a href="{% url "shop:product_list" %}"><img src="{% static "images/small.jpeg" %}" alt={% static "images/no_image.png" %}"></a>
+          <div class="sub-cat-detail">
+            <div class="sub-cat-line"></div>
+            <div class="sub-cat-title">Accesories</div>
+          </div>
+          <div class="sub-category-btn">
+            <a href="{% url "shop:product_list" %}" class="btn btn-black">Shop Now</a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-6 align-center p-0">
+          <a href="{% url "shop:product_list" %}"><img src="{% static "images/small.jpeg" %}" alt={% static "images/no_image.png" %}"></a>
+          <div class="sub-cat-detail">
+            <div class="sub-cat-line"></div>
+            <div class="sub-cat-title">Light</div>
+          </div>
+          <div class="sub-category-btn">
+            <a href="{% url "shop:product_list" %}" class="btn btn-black">Shop Now</a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-6 align-center p-0">
+          <a href="{% url "shop:product_list" %}"><img src="{% static "images/small.jpeg" %}" alt={% static "images/no_image.png" %}"></a>
+          <div class="sub-cat-detail">
+            <div class="sub-cat-line"></div>
+            <div class="sub-cat-title">Charging</div>
+          </div>
+          <div class="sub-category-btn">
+            <a href="{% url "shop:product_list" %}" class="btn btn-black">Shop Now</a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-6 align-center p-0">
+          <a href="{% url "shop:product_list" %}"><img src="{% static "images/small.jpeg" %}" alt={% static "images/no_image.png" %}"></a>
+          <div class="sub-cat-detail">
+            <div class="sub-cat-line"></div>
+            <div class="sub-cat-title">Solar</div>
+          </div>
+          <div class="sub-category-btn">
+            <a href="{% url "shop:product_list" %}" class="btn btn-black">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="sub-category-bottom">
+        <div class="col-md-3 col-sm-6 col-xs-6 align-center sub-cat-bottom p-0">
+          <a href="{% url "shop:product_list" %}"><img src="{% static "images/small.jpeg" %}" alt={% static "images/no_image.png" %}"></a>
+          <div class="sub-cat-detail">
+            <div class="sub-cat-line"></div>
+            <div class="sub-cat-title">Dual Charging</div>
+          </div>
+          <div class="sub-category-btn">
+            <a href="{% url "shop:product_list" %}" class="btn btn-black">Shop Now</a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-6 align-center sub-cat-bottom p-0">
+          <a href="{% url "shop:product_list" %}"><img src="{% static "images/small.jpeg" %}" alt={% static "images/no_image.png" %}"></a>
+          <div class="sub-cat-detail">
+            <div class="sub-cat-line"></div>
+            <div class="sub-cat-title">Entertainment Units</div>
+          </div>
+          <div class="sub-category-btn">
+            <a href="{% url "shop:product_list" %}" class="btn btn-black">Shop Now</a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-6 align-center sub-cat-bottom p-0">
+          <a href="{% url "shop:product_list" %}"><img src="{% static "images/small.jpeg" %}" alt={% static "images/no_image.png" %}"></a>
+          <div class="sub-cat-detail">
+            <div class="sub-cat-line"></div>
+            <div class="sub-cat-title">Speakers</div>
+          </div>
+          <div class="sub-category-btn">
+            <a href="{% url "shop:product_list" %}" class="btn btn-black">Shop Now</a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-6 align-center sub-cat-bottom p-0">
+          <a href="{% url "shop:product_list" %}"><img src="{% static "images/small.jpeg" %}" alt={% static "images/no_image.png" %}"></a>
+          <div class="sub-cat-detail">
+            <div class="sub-cat-line"></div>
+            <div class="sub-cat-title">Car accesories</div>
+          </div>
+          <div class="sub-category-btn">
+            <a href="{% url "shop:product_list" %}" class="btn btn-black">Shop Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="container">
+    <div class="ptb-85">
+      <div class="blog-main">
+        <div class="owl-slider">
+          <div class="row blog_slider owlcarousel m-0">
+              {% for b in blog %}
+              <ul>
+                  <li>
+                     <div class="item p-0">
+                        <div class="blog-item">
+                            <div class="blog-detail col-sm-6 p-0">
+                             <div class="blog-detail-inner">
+                             <div class="blog-contant">
+                                  <h4 class="blog-title"><a href="single-blog.html">{{ b.post_heading }}</a></h4>
+                               <div class="post-info">
+                                   <p><a href="single-blog.html">{{ b.post_body | truncatewords:"30"}}</a></p>
+                                </div>
+                                <span>{{ b.created }}</span>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="blog-media col-sm-6 p-0">
+                            <img src="{% if b.post_picture %}{{ b.post_picture }}{% else %}{% static "images/no_image.png" %}{% endif %}">
+                            </div>
+                        </div>
+                     </div>
+                  </li>
+              </ul>
+              {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand logo block Start  -->
+  <section class="container">
+    <div class="pb-85 brand-main">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="brand">
+            <div id="brand-logo" class="owl-carousel align_center">
+              <div class="item"><a href="#"><img src="{% static "images/brand1.png" %}" alt={% static "images/no_image.png" %}"></a></div>
+              <div class="item"><a href="#"><img src="{% static "images/brand2.png" %}" alt={% static "images/no_image.png" %}"></a></div>
+              <div class="item"><a href="#"><img src="{% static "images/brand3.png" %}" alt={% static "images/no_image.png" %}"></a></div>
+              <div class="item"><a href="#"><img src="{% static "images/brand4.png" %}" alt={% static "images/no_image.png" %}"></a></div>
+              <div class="item"><a href="#"><img src="{% static "images/brand5.png" %}" alt={% static "images/no_image.png" %}"></a></div>
+              <div class="item"><a href="#"><img src="{% static "images/brand5.png" %}" alt={% static "images/no_image.png" %}"></a></div>
+              <div class="item"><a href="#"><img src="{% static "images/brand6.png" %}" alt={% static "images/no_image.png" %}"></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Brand logo block End  -->
+
+
+
+{% endblock %}
+
+{% block scripts %}
+	<!-- {{ block.super }} -->
+{% endblock %}

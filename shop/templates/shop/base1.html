@@ -1,0 +1,504 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+<!-- Basic Page Needs
+  ================================================== -->
+<meta charset="utf-8">
+<title>{% block title %}Iluz Shop{% endblock %}</title>
+<!-- SEO Meta
+  ================================================== -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="distribution" content="global">
+<meta name="revisit-after" content="2 Days">
+<meta name="robots" content="ALL">
+<meta name="rating" content="8 YEARS">
+<meta name="Language" content="en-us">
+<meta name="GOOGLEBOT" content="NOARCHIVE">
+<!-- Mobile Specific Metas
+  ================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- CSS
+  ================================================== -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.min.css" %}"/>
+<link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}"/>
+<link rel="stylesheet" type="text/css" href="{% static "css/jquery-ui.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/owl.carousel.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/fotorama.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/magnific-popup.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/custom.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/responsive.css" %}">
+
+
+
+<link rel="shortcut icon" href="{% static "images/favicon.png" %}">
+<link rel="apple-touch-icon" href="{% static "images/apple-touch-icon.png" %}">
+<link rel="apple-touch-icon" sizes="72x72" href="{% static "images/apple-touch-icon-72x72.png" %}">
+<link rel="apple-touch-icon" sizes="114x114" href="{% static "images/apple-touch-icon-114x114.png" %}">
+</head>
+<body>
+<div class="se-pre-con"></div>
+<!-- <div id="newslater-popup" class="mfp-hide white-popup-block open align-center">
+  <div class="nl-popup-main">
+    <div class="nl-popup-inner">
+      <div class="row m-0">
+        <div class="col-sm-5 col-xs-0 hidden-xs p-0">
+          <div class="nl-popup-image">
+            <img src="{% static "images/popup-image.jpeg" %}" alt="No image available">
+          </div>
+        </div>
+        <div class="col-sm-7 col-xs-12 p-0">
+          <div class="newsletter-inner">
+            <h2 class="main_title">Newsletter</h2>
+            <p>Use code : BFYUS for 20% off free shipping on your first order</p>
+            <form>
+              <input type="email" placeholder="Email Here...">
+              <button class="email-btn"></button>
+            </form>
+            <ul>
+              <li>
+                <span>
+                  <input type="checkbox" class="checkbox">
+                </span>
+                <label>Don't show this popup again</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="main">
+  <!-- HEADER START -->
+  <header class="navbar navbar-custom" id="header">
+    <div class="header-middle">
+      <div class="container">
+        <div class="header-inner">
+          <div class="row m-0">
+            <div class="col-md-3 col-sm-12 p-0">
+              <div class="navbar-header float-none-sm">
+                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button"><i class="fa fa-bars"></i></button>
+                <a class="navbar-brand page-scroll" href="{% url "index:landing_view" %}">
+                  <img alt="Iluz" src="{% static "images/logov2.JPG" %}"style="width:80px;height:80px;">
+                </a>
+                <div class="top-link top-link-left visible-sm right-side">
+                  <ul>
+                    <li class="language-icon">
+
+                    </li>
+                    <li class="sitemap-icon">
+                      <select>
+                        <option selected="selected" value="">$</option>
+                        <option value="">USD</option>
+                        <option value="">AUD</option>
+                        <option value="">EUR</option>
+                      </select>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9 col-sm-12 p-0">
+              <div class="header-right-part right-side float-none-sm">
+                <ul>
+                  <li class="mobile-view-search">
+                    <div class="header_search_toggle mobile-view">
+                      <!-- <form>
+                        <div class="search-box">
+                          <input type="text" placeholder="Search" class="input-text">
+                          <button class="search-btn"></button>
+                        </div>
+                      </form> -->
+                    </div>
+                  </li>
+                  <li class="shipping-icon visible-lg visible-md">
+                    <a href="cart.html">
+                      <span>
+                      </span>
+                      <div class="header-right-text">Call Us</div>
+                      <div class="header-price">000-000-0000</div>
+                    </a>
+                  </li>
+                  <li class="cart-icon">
+                    <a href="{% url "cart:cart_detail" %}">
+					{% with total_items=cart|length %}
+                      <span>
+                        <small class="cart-notification">{{ total_items }}</small>
+                      </span>
+					{% endwith %}
+                      <div class="header-right-text">Shopping Cart</div>
+                      <div class="header-price">
+						{% with total_items=cart|length %}
+							{% if cart|length > 0 %}
+								<a href="{% url "cart:cart_detail" %}">
+									{{ total_items }} item{{ total_items|pluralize }}, ${{ cart.get_total_price }}
+								</a>
+							{% else %}
+								$0.00
+							{% endif %}
+						{% endwith %}
+					  </div>
+                    </a>
+                    <div class="cart-dropdown header-link-dropdown">
+                        {% for item in cart %}
+                        {% with product=item.product %}
+                      <ul class="cart-list link-dropdown-list">
+                        <li> <a class="close-cart" href="{% url "cart:cart_remove" product.id %}"><i class="fa fa-times-circle"></i></a>
+                          <div class="media"> <a class="pull-left" href="{{ product.get_absolute_url }}"> <img alt="No image available" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"></a>
+                            <div class="media-body">
+                              <span><a>{{ product.name }}</a></span>
+                              <p class="cart-price">${{ item.price }}</p>
+                              <div class="product-qty">
+                                <div class="custom-qty">
+                                  <input type="text" name="qty" maxlength="8" value="{{item.quantity}}" title="Qty" class="input-text qty">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                        {% endwith %}
+                        {% endfor %}
+                        <!--<li> <a class="close-cart"><i class="fa fa-times-circle"></i></a>-->
+                          <!--<div class="media"> <a class="pull-left"> <img alt="No image available" src="{% static "images/pexels-photo-577514 (2).jpeg" %}"></a>-->
+                            <!--<div class="media-body">-->
+                              <!--<span><a>Weird bulb</a></span>-->
+                              <!--<p class="cart-price">$14.99</p>-->
+                              <!--<div class="product-qty">-->
+                                <!--<div class="custom-qty">-->
+                                  <!--<input type="text" name="qty" maxlength="8" value="1" title="Qty" class="input-text qty">-->
+                                <!--</div>-->
+                              <!--</div>-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</li>-->
+                      <!--</ul>-->
+                      <p class="cart-sub-totle">
+                        <span class="pull-left">Cart Subtotal</span>
+                        <span class="pull-right"><strong class="price-box">${{ cart.get_total_price_after_discount|floatformat:"2" }}</strong></span>
+                      </p>
+                      <div class="clearfix"></div>
+                      <div class="mt-20">
+                          {% if cart|length > 0 %}
+                        <a href="{% url "cart:cart_detail" %}" class="btn-color btn">Cart</a>
+                        <a href="{% url "cart:cart_overview" %}" class="btn-color btn right-side">Checkout</a>
+                          {% else %}
+                         <a href="{% url "shop:product_list" %}" class="btn-color btn">Cart</a>
+                          <a href="{% url "shop:product_list" %}" class="btn-color btn right-side">Checkout</a>
+                          {% endif %}
+
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-bottom">
+      <div class="container">
+        <div id="menu" class="navbar-collapse collapse left-side" >
+          <ul class="nav navbar-nav navbar-left">
+            <li class="level"><a href="{% url "index:landing_view" %}" class="page-scroll">Home</a></li>
+            <li class="level"><a href="#" class="page-scroll">About US</a></li>
+             <li class="level"><a href="{% url "shop:product_list" %}" class="page-scroll">Shop</a></li>
+            <!--<li class="level dropdown">-->
+              <!--<span class="opener plus"></span>-->
+              <!--<a href="shop.html" class="page-scroll">Shop</a>-->
+              <!--<div class="megamenu full mobile-sub-menu">-->
+                <!--<div class="megamenu-inner">-->
+                  <!--<div class="megamenu-inner-top">-->
+                    <!--<div class="row">-->
+                      <!--{% for c in categories %}-->
+                        <!--<ul>-->
+                            <!--<li>-->
+                                <!--<div class="col-md-3 level2">-->
+                                    <!--<a href="#"><span>{{ c.name }}</span></a>-->
+                                    <!--&lt;!&ndash;{% for product in c.product_set.all %}&ndash;&gt;-->
+                                    <!--<ul class="sub-menu-level2 ">-->
+                                        <!--<li class="level3"><a href="shop.html">{{ c.products.price }}</a></li>-->
+                                        <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Lamp 1</a></li>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Lamp 1</a></li>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Lamp 1</a></li>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Lamp 1</a></li>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Lamp 1</a></li>&ndash;&gt;-->
+                                    <!--</ul>-->
+                                    <!--&lt;!&ndash;{% endfor %}&ndash;&gt;-->
+                                <!--</div>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                      <!--{% endfor %}-->
+                      <!--&lt;!&ndash;<div class="col-md-3 level2">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a href="shop.html"><span>Lamps</span></a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ul class="sub-menu-level2 ">&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Lamp 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Lamp 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Lamp 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Lamp 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Lamp 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Lamp 1</a></li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                      <!--&lt;!&ndash;<div class="col-md-3 level2">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a href="shop.html"><span>Portable Chargers</span></a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ul class="sub-menu-level2 ">&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Charger 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Charger 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Charger 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Charger 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Charger 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Charger 1</a></li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                      <!--&lt;!&ndash;<div class="col-md-3 level2">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<a href="shop.html"><span>Accesories</span></a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ul class="sub-menu-level2 ">&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Accesory 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Accesory 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Accesory 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Accesory 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Accesory 1</a></li>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<li class="level3"><a href="shop.html">Accesory 1</a></li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                      <!--<div class="col-md-3 level2 visible-lg visible-md">-->
+                        <!--<a href="shop.html">-->
+                          <!--<img src="{% static "images/drop_banner.jpg" %}" alt="No image available">-->
+                        <!--</a>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</li>-->
+            <!--<li class="level dropdown">-->
+              <!--<span class="opener plus"></span>-->
+              <!--<a class="page-scroll">Pages</a>-->
+              <!--<div class="megamenu mobile-sub-menu">-->
+                <!--<div class="megamenu-inner-top">-->
+                  <!--<ul class="sub-menu-level1">-->
+                    <!--<li class="level2">-->
+                      <!--<ul class="sub-menu-level2 ">-->
+                        <!--<li class="level3"><a href="about.html">About Us</a></li>-->
+                        <!--<li class="level3"><a href="account.html">Account</a></li>-->
+                        <!--<li class="level3"><a href="checkout.html">Checkout</a></li>-->
+                        <!--<li class="level3"><a href="contact.html">Contact</a></li>-->
+                        <!--<li class="level3"><a href="404.html">404 Error</a></li>-->
+                        <!--<li class="level3"><a href="blog.html">Blog</a></li>-->
+                        <!--<li class="level3"><a href="single-blog.html">Single Blog</a></li>-->
+                      <!--</ul>-->
+                    <!--</li>-->
+                  <!--</ul>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</li>-->
+               <li class="level"><a href="#" class="page-scroll">Contact US</a></li>
+          </ul>
+          <div class="top-link top-link-left visible-md visible-lg right-side">
+            <ul>
+              <li class="language-icon">
+
+              </li>
+              <!--<li class="level"><a href="index.html" class="page-scroll inactive">Blog</a></li>-->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- HEADER END -->
+
+	{% block content %}
+
+
+    {% endblock %}
+
+  <!-- FOOTER START -->
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="container">
+        <div class="footer-top mb-40">
+          <div class="row">
+            <div class="footer-static-block">
+              <!-- <span class="opener plus"></span> -->
+              <!--  Site Services Features Block Start  -->
+              <div class="col-sm-4">
+                <div class="ser-feature-block">
+                  <div class="feature-box feature1">
+                    <div class="ser-title">Free Shipping</div>
+                    <div class="ser-subtitle">We currently serve Only US markets</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="ser-feature-block">
+                  <div class="feature-box feature2">
+                    <div class="ser-title">Special Gift</div>
+                    <div class="ser-subtitle">Give the perfect gift to your loved ones</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="ser-feature-block">
+                  <div class="feature-box feature3">
+                    <div class="ser-title">Money Back</div>
+                    <div class="ser-subtitle">That's our guarantee</div>
+                  </div>
+                </div>
+              </div>
+              <!--  Site Services Features Block End  -->
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="footer-middle mtb-60" >
+          <div class="row">
+            <div class="col-md-3 f-col">
+              <div class="footer-static-block">
+                <span class="opener plus"></span>
+                <h3 class="title">Information</h3>
+                <ul class="footer-block-contant link">
+                  <li><a>About Us</a></li>
+                  <li><a>Delivery Information</a></li>
+                  <li><a>Privacy Policy</a></li>
+                  <li><a>Terms & Conditions</a></li>
+                  <li><a>Gift Certificates</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3 f-col">
+              <div class="footer-static-block">
+                <span class="opener plus"></span>
+                <h3 class="title">Help</h3>
+                <ul class="footer-block-contant link">
+                  <li><a>About Us</a></li>
+                  <li><a>Delivery Information</a></li>
+                  <li><a>Privacy Policy</a></li>
+                  <li><a>Terms & Conditions</a></li>
+                  <li><a>Gift Certificates</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3 f-col">
+              <div class="footer-static-block">
+                <span class="opener plus"></span>
+                <h3 class="title">Guidance</h3>
+                <ul class="footer-block-contant link">
+                  <li><a>About Us</a></li>
+                  <li><a>Delivery Information</a></li>
+                  <li><a>Privacy Policy</a></li>
+                  <li><a>Terms & Conditions</a></li>
+                  <li><a>Gift Certificates</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3 f-col">
+              <div class="footer-static-block">
+                <span class="opener plus"></span>
+                <h3 class="title">Contact</h3>
+                <ul class="footer-block-contant address-footer">
+                  <li><p>iLuz ltd</p></li>
+                  <li><p>RDU</p></li>
+                  <li><p>NC</p></li>
+                  <li><p><a>info@iluz.com</a></p></li>
+                  <li><p>000-000-0000</p></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="no-border-small">
+        <div class="footer-bottom top">
+          <div class="site-link align-center col-sm-12">
+            <ul>
+              <li><a>Renewable</a>|</li>
+              <li><a>Electronics</a>|</li>
+              <li><a>Charging</a>|</li>
+              <li><a>Lighting</a>|</li>
+              <li><a>Conservation</a>|</li>
+              <li><a>Energy</a>|</li>
+              <li><a>Accesories</a>|</li>
+              <li><a>Speakers</a></li>
+            </ul>
+          </div>
+          <div class="col-sm-12 align-center">
+            <div class="copy-right center-xs">© 2017  All Rights Reserved. Design By <a href="#">Iluz</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="payment left-side float-none-sm center-xs">
+              <ul class="payment_icon">
+                <li class="discover"><a></a></li>
+                <li class="visa"><a></a></li>
+                <li class="mastro"><a></a></li>
+                <li class="paypal"><a></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="newsletter">
+              <h3 class="title visible-lg">
+                <span class="newsletter-icon"><img src="{% static "images/newsletter-icon.png" %}" alt="No image available"></span>
+                Subscribe Here
+              </h3>
+              <div class="email-box-main right-side float-none-sm center-xs">
+
+                  <form>
+                      {% csrf_token %}
+                  <div class="email-box">
+                    <input type="text" placeholder="Enter email....." class="input-text" value="{{ form.email }}" required>
+                    <button class="btn btn-color">Go</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="footer_social pt-xs-15 center-xs mt-xs-15 right-side float-none-sm">
+              <ul class="social-icon">
+                <li><a title="Facebook" class="facebook"><i class="fa fa-facebook"> </i></a></li>
+                <li><a title="Twitter" class="twitter"><i class="fa fa-twitter"> </i></a></li>
+                <li><a title="Linkedin" class="linkedin"><i class="fa fa-linkedin"> </i></a></li>
+                <li><a title="RSS" class="rss"><i class="fa fa-rss"> </i></a></li>
+                <li><a title="Pinterest" class="pinterest"><i class="fa fa-pinterest"> </i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-top">
+    <div id="scrollup"></div>
+  </div>
+  <!-- FOOTER END -->
+</div>
+
+
+<script src="{% static "js/jquery-1.12.3.min.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script src="{% static "js/jquery-ui.js" %}"></script>
+<script src="{% static "js/fotorama.js" %}"></script>
+<script src="{% static "js/jquery.magnific-popup.js" %}"></script>
+<script src="{% static "js/owl.carousel.min.js" %}"></script>
+<script src="{% static "js/custom.js" %}"></script>
+
+{% block scripts %} {% endblock %}
+
+
+
+</body>
+</html>

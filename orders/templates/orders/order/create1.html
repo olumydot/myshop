@@ -1,0 +1,111 @@
+{% extends "shop/base1.html" %}
+{% load static %}
+
+{% block title %}
+    Your shopping cart
+{% endblock %}
+
+{% block content %}
+
+
+  <!-- BANNER STRAT -->
+  <div class="banner inner-banner">
+    <div class="container">
+      <div class="bread-crumb mtb-60 center-xs">
+        <!-- <div class="page-title">All</div> -->
+        <div class="bread-crumb-inner right-side float-none-xs">
+          <ul>
+            <li><a href= "{% url "cart:cart_overview" %}">Order Summary</a><i class="fa fa-angle-right"></i></li>
+            <li><span>Shipping</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- BANNER END -->
+
+
+  <!-- CONTAIN START -->
+  <section class="container">
+    <div class="checkout-section pb-85 pt-55">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="checkout-step mb-40">
+            <ul>
+              <li>
+                <a href= "{% url "cart:cart_overview" %}">
+                  <div class="step">
+                    <div class="line"></div>
+                    <div class="circle">1</div>
+                  </div>
+                  <span>Order Summary</span>
+                </a>
+              </li>
+              <li class="active">
+                <a href="{% url "orders:order_create" %}">
+                  <div class="step">
+                    <div class="line"></div>
+                    <div class="circle">2</div>
+                  </div>
+                  <span>Shipping</span>
+                </a>
+              </li>
+              <li>
+
+                  <div class="step">
+                    <div class="line"></div>
+                    <div class="circle">3</div>
+                  </div>
+                  <span>Payment</span>
+
+              </li>
+              <li>
+
+                  <div class="step">
+                    <div class="line"></div>
+                    <div class="circle">4</div>
+                  </div>
+                  <span>Order Complete</span>
+
+              </li>
+            </ul>
+            <hr>
+          </div>
+          <div class="checkout-content" >
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="heading-part align-center">
+                    <h2 class="heading">Please fill up your Shipping details</h2>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-md-8 col-sm-8 col-lg-offset-3 col-sm-offset-2">
+                <form action="." class="main-form full" method="post">
+                  {{ form.as_p }}
+
+                      <div class="col-sm-12">
+                        <div class= "right-side">
+                          <input type="submit" value="Next" class="btn btn-black" id="create_next" style="background-color:black;">
+                        </div>
+
+                        <!-- <a href="order-overview.html" class="btn btn-black right-side">Next</a> -->
+                      </div>
+                    </div>
+                  </div>
+                  {% csrf_token %}
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTAINER END -->
+
+  {% endblock %}
+
+  {% block script %}
+
+  {% endblock %}

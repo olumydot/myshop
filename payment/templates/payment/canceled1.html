@@ -1,0 +1,298 @@
+{% extends "shop/base1.html" %}
+{% load static %}
+
+{% block title %}
+    Your shopping cart
+{% endblock %}
+
+{% block content %}
+
+  <!-- BANNER STRAT -->
+  <div class="banner inner-banner">
+    <div class="container">
+      <div class="bread-crumb mtb-60 center-xs">
+        <!-- <div class="page-title">All</div> -->
+        <div class="bread-crumb-inner right-side float-none-xs">
+          <ul>
+            <li><a href="{% url "payment:process" %}">Payment</a><i class="fa fa-angle-right"></i></li>
+            <li><span>Order Complete</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- BANNER END -->
+
+  <!-- CONTAIN START -->
+  <section class="container">
+    <div class="checkout-section pb-85 pt-55">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="checkout-step mb-40">
+            <ul>
+              <li class="active">
+                <a href="{% url "cart:cart_overview" %}">
+                  <div class="step">
+                    <div class="line"></div>
+                    <div class="circle">1</div>
+                  </div>
+                  <span>Order Summary</span>
+                </a>
+              </li>
+              <li class="active">
+                <a href="{% url "orders:order_create" %}">
+                  <div class="step">
+                    <div class="line"></div>
+                    <div class="circle">2</div>
+                  </div>
+                  <span>Shipping</span>
+                </a>
+              </li>
+              <li class="active">
+                <a href="{% url "payment:process" %}">
+                  <div class="step">
+                    <div class="line"></div>
+                    <div class="circle">2</div>
+                  </div>
+                  <span>Payment</span>
+                </a>
+              </li>
+              <li class="active">
+                <a href="{% url "payment:canceled" %}">
+                  <div class="step">
+                    <div class="line"></div>
+                    <div class="circle">3</div>
+                  </div>
+                  <span>Order Complete</span>
+                </a>
+              </li>
+            </ul>
+            <hr>
+          </div>
+          <div class="checkout-content" >
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="heading-part align-center">
+                    <h2 class="heading">Your order order id {{ order_id }} was cancelled</h2>
+                </div>
+              </div>
+            </div>
+              <!--<div class="row">-->
+              <!--<div class="col-lg-6 col-md-8 col-sm-8 col-lg-offset-3 col-sm-offset-2">-->
+                <div class="checkout-content">
+            <!--<div class="row">-->
+              <!--<div class="col-xs-12">-->
+                <!--<div class="heading-part align-center">-->
+                    <!--<h2 class="heading">Order Summary</h2>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <div class="row">
+              <div class="col-sm-8 mb-sm-30">
+                <div class="cart-item-table commun-table mb-30">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Product</th>
+                          <th>Product Detail</th>
+                          <th>Sub Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for item in cart %}
+                        {% with product=item.product %}
+                        <tr>
+                          <td>
+                            <a href="{{ product.get_absolute_url }}">
+                              <div class="product-image"><img  src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"></div>
+                            </a>
+                          </td>
+                          <td>
+                            <div class="product-title">
+                              <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                              <div class="product-info-stock-sku m-0">
+                                <div>
+                                  <label>Price: </label>
+                                  <div class="price-box">
+                                    <span class="info-deta price">${{ product.price }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="product-info-stock-sku m-0">
+                                <div>
+                                  <label>Quantity: </label>
+                                  <span class="info-deta">{{item.quantity}}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div data-id="100" class="total-price price-box">
+                                <span class="price">${{ item.total_price }}</span>
+                            </div>
+                          </td>
+                        </tr>
+                         {% endwith %}
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+
+                <div class="cart-total-table commun-table mb-30">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th colspan="2">Cancelled Order Details</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <td>Order ID</td>
+                          <td>
+                            <div class="price-box">
+                              <span class="price">#{{ order_id }}</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Date</td>
+                          <td>
+                            <div class="price-box">
+                              <span class="price">{{ time  }}</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <!--cleaned data here-->
+                          <td>Payment method</td>
+                          <td>
+                            <div class="price-box">
+                              <span class="price">PayPal</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td><b>Total Amount</b></td>
+                          <td>
+                            <div class="price-box">
+                              <span class="price"><b>${{ cart.get_total_price_after_discount|floatformat:"2" }}</b></span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="mb-30">
+                  <div class="heading-part">
+                    <h3 class="sub-heading">Order Cancellation Confirmed</h3>
+                  </div>
+                  <hr>
+                  <p class="mt-20">Your order was cancelled at {{ time }}</p>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="cart-total-table address-box commun-table mb-30">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Shipping Address</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ul>
+                            <li class="inner-heading">
+                                <b>{{ order.first_name }} {{ order.last_name }}</b>
+                              </li>
+
+                              <li>
+                                <p>{{ order.address }}</p>
+                              </li>
+                              <li>
+                                <p>{{ order.city }}</p>
+                              </li>
+                              <li>
+                                <p>{{ order.postal_code }}</p>
+                              </li>
+                              <li>
+                                <p>{{ order.country }}</p>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="cart-total-table address-box commun-table">
+                  <div class="table-responsive">
+                    <!--<table class="table">-->
+                      <!--<thead>-->
+                        <!--<tr>-->
+                          <!--<th>Billing Address</th>-->
+                        <!--</tr>-->
+                      <!--</thead>-->
+                      <!--<tbody>-->
+                        <!--<tr>-->
+                          <!--<td>-->
+                            <!--<ul>-->
+                              <!--<li class="inner-heading">-->
+                                <!--<b>Mike Ogagun</b>-->
+                              <!--</li>-->
+
+                              <!--<li>-->
+                                <!--<p>16, Weather Hill Cir</p>-->
+                              <!--</li>-->
+                              <!--<li>-->
+                                <!--<p>Durham, NC</p>-->
+                              <!--</li>-->
+                              <!--<li>-->
+                                <!--<p>USA</p>-->
+                              <!--</li>-->
+                            <!--</ul>-->
+                          <!--</td>-->
+                        <!--</tr>-->
+                      <!--</tbody>-->
+                    <!--</table>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                <!--<div class="payment-option-box mb-30">-->
+                  <!--<div class="payment-option-box-inner gray-bg">-->
+                    <!--<div class="payment-top-box">-->
+                      <!--<div class="radio-box left-side">-->
+                        <!--<span>-->
+                          <!--<input type="radio" id="cash" value="cash" name="payment_type">-->
+                        <!--</span>-->
+                        <!--<label for="cash">Would you like to pay by Cash on Delivery?</label>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, enim!</p>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <div class="right-side float-none-xs">
+                  <a class="btn btn-black" href="{% url "shop:product_list" %}">Continue Shopping<span><i class="fa fa-angle-right"></i></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTAINER END -->
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

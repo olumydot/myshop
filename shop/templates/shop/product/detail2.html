@@ -1,0 +1,330 @@
+{% extends "shop/base1.html" %}
+{% load static %}
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<!-- BANNER STRAT -->
+<div class="banner inner-banner">
+  <div class="container">
+    <div class="bread-crumb mtb-60 center-xs">
+      <!-- <div class="page-title">All</div> -->
+      <div class="bread-crumb-inner right-side float-none-xs">
+        <ul>
+          <li><a href="index.html">Store</a><i class="fa fa-angle-right"></i></li>
+          <li><span>Product Detail</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- BANNER END -->
+
+<!-- CONTAIN START -->
+<section class="container">
+  <div class="pro-page pt-55">
+    <div class="row">
+      <div class="col-md-5 col-sm-5 mb-xs-30">
+        <div class="fotorama" data-nav="thumbs" data-allowfullscreen="native">
+          <a src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"></a>
+          <a src="{% if product.image1 %}{{ product.image1.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"></a>
+          <a src="{% if product.image2 %}{{ product.image2.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"></a>
+          <a src="{% if product.image3 %}{{ product.image3.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"></a>
+          <a src="{% if product.image4 %}{{ product.image4.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"></a>
+          <a src="{% if product.image5 %}{{ product.image5.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"></a>
+          <!--<a href="#"><img src="images/productdetail4.jpg" alt="Streetwear"></a>-->
+          <!--<a href="#"><img src="images/productdetail5.jpg" alt="Streetwear"></a>-->
+          <!--<a href="#"><img src="images/productdetail6.jpg" alt="Streetwear"></a>-->
+        </div>
+      </div>
+      <div class="col-md-7 col-sm-7">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="product-detail-main">
+              <div class="product-item-details">
+                <h1 class="product-item-name">{{ product.name }}</h1>
+                <div class="rating-summary-block">
+                  <div title="53%" class="rating-result">
+                    <span style="width:{{product.rating}}%"></span>
+                  </div>
+                </div>
+                <div class="price-box">
+                  <span class="price">${{ product.price }}</span>
+                  <del class="price old-price">${{ product.old_price }}</del>
+                </div>
+                <div class="product-info-stock-sku">
+                  <div>
+                    <label>Availability: </label>
+                    {% if product.available %}
+                    <span class="info-deta">In stock</span>
+                    {% else %}
+                    <span class="info-deta">Out of stock</span>
+                    {% endif %}
+                  </div>
+                  <div>
+                    <label>SKU: </label>
+                    <span class="info-deta">{{ product.SKU }}</span>
+                  </div>
+                </div>
+                <p>{{ product.description }} </p>
+
+                <div class="product-color select-arrow mb-20">
+                  <label>Color</label>
+                  <span class="selectpicker form-control" id="select-by-color">
+                    {{ product.color }}
+                  </span>
+                </div>
+                <div class="mb-40">
+                  <div class="product-qty">
+                    <!-- <label for="qty">Qty:</label> -->
+                      <div class="custom-qty">
+                      <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                {{ cart_product_form }}
+                                {% csrf_token %}
+                      </div>
+                      <div class="bottom-detail cart-button">
+                        <ul>
+                          <li class="pro-cart-icon">
+                            <form action="{% url "cart:cart_add" product.id %}" method="post">
+                              <button title="Add to Cart" class="btn-black"><span></span>Add to Cart</button>
+                            </form>
+                          </li>
+                        </ul>
+                      </div>
+                      </form>
+
+                  </div>
+                  <div class="bottom-detail cart-button">
+
+                  </div>
+                </div>
+                <div class="detail-inner-left">
+                  <ul>
+                    <!-- <li class="pro-cart-icon">
+                      <form>
+                        <button title="Add to Cart"><span></span></button>
+                      </form>
+                    </li> -->
+                    <li class="pro-wishlist-icon"><a href="#"></a></li>
+                    <li class="pro-compare-icon"><a href="#"></a></li>
+                  </ul>
+                </div>
+                
+                <div class="share-link">
+                  <label>Share This : </label>
+                  <div class="social-link">
+                    <ul class="social-icon">
+                      <li><a class="facebook" title="Facebook" href= "https://www.facebook.com/login.php"><i class="fa fa-facebook"> </i></a></li>
+                      <li><a class="twitter" title="Twitter" href= "https://twitter.com/login"><i class="fa fa-twitter"> </i></a></li>
+                      <li><a class="linkedin" title="Linkedin" href="https://www.linkedin.com/uas/login"><i class="fa fa-linkedin"> </i></a></li>
+                      <li><a class="pinterest" title="Pinterest" href="https://www.pinterest.com/login/"><i class="fa fa-pinterest"> </i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="ptb-85">
+    <div class="product-detail-tab flipInX">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="tabs">
+            <ul class="nav nav-tabs">
+              <li><a class="tab-Description selected" title="Description">Description</a></li>
+              <li><a class="tab-Product-Tags" title="Product-Tags">Product-tag</a></li>
+              <li><a class="tab-Reviews" title="Reviews">Reviews</a></li>
+            </ul>
+          </div>
+          <div id="items">
+            <div class="tab_content">
+              <ul>
+                <li>
+                  <div class="items-Description selected">
+                    <div class="Description"> <strong>{{ product.name }}</strong><br />
+                      <p>{{ product.description}}</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="items-Product-Tags"><strong>Tags</strong><br />
+                    {{ product.product_tag }}</div>
+                </li>
+                <li>
+                  <div class="items-Reviews">
+                    <div class="comments-area">
+                      <h4>Comments<span>(2)</span></h4>
+                      <ul class="comment-list mt-30">
+                        <li>
+                          <div class="comment-user"> <img src="images/comment-user.jpg" alt="Streetwear"> </div>
+                          <div class="comment-detail">
+                            <div class="user-name">Barack Obama</div>
+                            <div class="post-info">
+                              <ul>
+                                <li>Jan 01, 2017</li>
+                                <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
+                              </ul>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, facilis.</p>
+                          </div>
+                          <ul class="comment-list child-comment">
+                            <li>
+                              <div class="comment-user"> <img src="images/comment-user.jpg" alt="Streetwear"> </div>
+                              <div class="comment-detail">
+                                <div class="user-name">Bill Clinton</div>
+                                <div class="post-info">
+                                  <ul>
+                                    <li>Feb 14, 2017</li>
+                                    <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
+                                  </ul>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus quaerat eius alias sunt officiis facilis vel cumque, voluptatem ratione mollitia.</p>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="comment-user"> <img src="images/comment-user.jpg" alt="Streetwear"> </div>
+                              <div class="comment-detail">
+                                <div class="user-name">Nancy Regan</div>
+                                <div class="post-info">
+                                  <ul>
+                                    <li>Apr 24, 2017</li>
+                                    <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
+                                  </ul>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, optio, consequatur. Impedit, sint?</p>
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div class="comment-user"> <img src="images/comment-user.jpg" alt="Streetwear"> </div>
+                          <div class="comment-detail">
+                            <div class="user-name">Prince Opah</div>
+                            <div class="post-info">
+                              <ul>
+                                <li>Nov 24, 2017</li>
+                                <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
+                              </ul>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et illum mollitia, laboriosam, suscipit rem nesciunt provident assumenda!.</p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="main-form mt-30">
+                      <h4>Leave a comments</h4>
+                      <div class="row mt-30">
+                        <form >
+                          <div class="col-sm-4 mb-20">
+                            <input type="text" placeholder="Name" required>
+                          </div>
+                          <div class="col-sm-4 mb-20">
+                            <input type="email" placeholder="Email" required>
+                          </div>
+                          <div class="col-sm-4 mb-20">
+                            <input type="text" placeholder="Website" required>
+                          </div>
+                          <div class="col-xs-12 mb-20">
+                            <textarea cols="30" rows="3" placeholder="Message" required></textarea>
+                          </div>
+                          <div class="col-xs-12">
+                            <button class="btn-black" name="submit" type="submit">Submit</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="pb-85">
+    <div class="product-slider owl-slider">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="heading-part align-center mb-40">
+            <h2 class="main_title">Related Products</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="product-slider-main position-r">
+          <div class="owl-carousel pro_cat_slider">
+          {% for p in products %}
+            {% if p.color == product.color %}
+            <div class="item">
+              <div class="product-item">
+                <div class="product-image">
+                  {% if p.sale %}
+                  <div class="sale-label"><span>Sale</span></div>
+                  {% endif %}
+                  <a href="{{ p.get_absolute_url }}">
+                      <img src="{% if p.image %}{{ p.image.url }}{% else %}{% static "images/no_image.png" %}{% endif %}">
+                  </a>
+                  <div class="product-detail-inner">
+                    <div class="detail-inner-left align-center">
+                      <ul>
+                        <li class="pro-cart-icon">
+                          <form>
+                            <button title="Add to Cart"><span></span></button>
+                          </form>
+                        </li>
+                        <li class="pro-wishlist-icon"><a href="#"></a></li>
+                        <li class="pro-compare-icon"><a href="#"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="product-item-details">
+                  <div class="product-item-name">
+                    <a href="product-page.html">{{ p.name }}</a>
+                  </div>
+                  <div class="price-box">
+                    <span class="price">${{ p.price }}</span>
+                    <del class="price old-price">${{ p.old_price }}</del>
+                  </div>
+                  <div class="rating-summary-block">
+                    <div title="53%" class="rating-result">
+                      <span style="width:{{p.rating}}%"></span>
+                    </div>
+                    <span class="label-review"><span>( 2 review )</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+              {% endif %}
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- CONTAINER END -->
+
+
+
+
+
+{% endblock %}
+
+{% block scripts %}
+	<!-- {{ block.super }} -->
+{% endblock %}
