@@ -38,7 +38,7 @@ mccabe==0.6.1
 mistune==0.8.1
 nbconvert==5.1.1
 nbformat==4.3.0
-notebook==5.0.0
+notebook==5.7.2
 numpy==1.13.1
 olefile==0.44
 panda==0.3.1
@@ -62,7 +62,7 @@ python-dateutil==2.6.0
 pytz==2017.2
 pyzmq==16.0.2
 qtconsole==4.3.0
-requests==2.18.4
+requests==2.20.0
 selenium==3.5.0
 simplegeneric==0.8.1
 six==1.10.0
@@ -72,7 +72,7 @@ tinycss2==0.6.1
 tornado==4.5.1
 traitlets==4.3.1
 urllib2-file==0.2.1
-urllib3==1.22
+urllib3==1.23
 vine==1.1.4
 virtualenv==15.1.0
 virtualenv-clone==0.2.6
