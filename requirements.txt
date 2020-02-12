@@ -16,7 +16,7 @@ cx-Freeze==5.0.1
 cycler==0.10.0
 decorator==4.0.10
 defusedxml==0.5.0
-Django==1.11.23
+Django==1.11.28
 entrypoints==0.2.2
 flake8==3.5.0
 html5lib==0.999999999
