@@ -72,7 +72,7 @@ tinycss2==0.6.1
 tornado==4.5.1
 traitlets==4.3.1
 urllib2-file==0.2.1
-urllib3==1.23
+urllib3==1.26.5
 vine==1.1.4
 virtualenv==15.1.0
 virtualenv-clone==0.2.6
